@@ -21,8 +21,7 @@ function UserList() {
     
     // fetch data from api function
     function fetchData(){
-        URL ='http://localhost:5000/users'
-        fetch(URL)
+        fetch('http://localhost:5000/users')
         .then(resp =>{
             if(!resp.ok){
                 throw new Error(`Https response status ${resp.status}`)

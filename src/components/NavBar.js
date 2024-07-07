@@ -2,19 +2,31 @@ import React from 'react'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import CommonContext from '../context/CommonContext';
+import { useContext } from 'react';
+import { NavLink } from 'react-router-dom';
+import '../App.css';
 
 
 function NavBar() {
+  const {theme,setTheme} = useContext(CommonContext)
+
+  function themeToggle(newTheme){
+    setTheme(theme=='light'?'dark':'light' )
+  }
+
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
-      <Container>
-        <Navbar.Brand href="#home">Tutorial</Navbar.Brand>
+    <Navbar expand="lg"className= {`bg-${theme} text-${theme==='light'?'dark':'light'}` }>
+      <Container   >
+        <Navbar.Brand>Tutorial</Navbar.Brand>
+        <button  onClick ={themeToggle} >{theme=='light'?'dark':'light'}</button>
+        
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/contact">ContactUs</Nav.Link>
-            <Nav.Link href="/users">Users</Nav.Link>
+            <NavLink className='nav-links' to="/contact">ContactUs</NavLink>
+            <NavLink className='nav-links' to="/">Home</NavLink>
+            <NavLink className='nav-links' to="/users">Users</NavLink>
           </Nav>
         </Navbar.Collapse>
       </Container>

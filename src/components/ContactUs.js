@@ -1,8 +1,15 @@
 import React from "react";
 import { useState } from "react";
-import { Container, Button,Alert } from "react-bootstrap";
+import { useContext } from "react";
+import CommonContext from "../context/CommonContext";
+import { Container, Button } from "react-bootstrap";
 
 function ContactUs() {
+  // context values
+  const {theme} = useContext(CommonContext)
+  const {value,setValue} = useContext(CommonContext)
+
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -37,7 +44,7 @@ function ContactUs() {
   }
   return (
     <>
-      <Container>
+      <Container className= {`bg-${theme} text-${theme==='light'?'dark':'light'}`}>
         <div>ContactUs</div>
         <div className="fields">
           <div className="label">User Name</div>
@@ -59,6 +66,8 @@ function ContactUs() {
         </div>
 
         <Button onClick={sendData}>Submit</Button>
+        <p>The Shared value is {value}</p>
+        <Button onClick={()=>{setValue(Math.floor(Math.random()*10))}} >Change Value</Button>
       </Container>
 
       {

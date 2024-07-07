@@ -36,3 +36,18 @@
     transform: rotate(360deg);
   }
 }
+
+.nav-links{
+  margin:0 10px;
+  text-decoration: none;
+  cursor: pointer;
+
+}
+
+.nav-links:hover{
+  color: green;
+}
+
+.active{
+  color: orangered;
+}
